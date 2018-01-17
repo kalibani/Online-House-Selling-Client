@@ -4,7 +4,7 @@ import swal from 'sweetalert'
 
 const token = localStorage.getItem('token')
 const http = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: 'http://houseselling-api.kautzaralibani.com/api',
   headers: {
     Authorization: token
   }
@@ -171,47 +171,3 @@ export const deleteHouse = ({ commit }, id) => {
     console.log(err)
   })
 }
-//
-// export const addAnswer = ({ commit }, payload) => {
-//   let token = localStorage.getItem('token')
-//   if (token) {
-//     http.post('/answer', payload)
-//     .then(({data}) => {
-//       commit('saveAddAnswers', data)
-//       if (data.message === 'Answer Succesfully Added!') {
-//         swal({
-//           text: data.message,
-//           icon: 'success',
-//           button: 'OK'
-//         })
-//       }
-//     })
-//     .catch((err) => {
-//       console.log(err)
-//     })
-//   } else {
-//     swal({
-//       title: 'error',
-//       text: 'You need login first',
-//       icon: 'error',
-//       button: 'OK'
-//     })
-//   }
-// }
-//
-// export const deleteAnswer = ({ commit }, id) => {
-//   http.delete('/answer/'+ id)
-//   .then(({data}) => {
-//     if (data.message === "Answer successfully deleted!") {
-//       commit('saveDelete', data)
-//       swal({
-//         text: data.message,
-//         icon: 'success',
-//         button: 'OK'
-//       })
-//     }
-//   })
-//   .catch((err) => {
-//     console.log(err)
-//   })
-// }

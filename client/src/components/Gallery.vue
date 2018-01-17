@@ -4,11 +4,11 @@
       <form>
         <div class="form-group">
           <label style="float:left;">Search</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Search...">
+          <input type="text" v-model="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Search...">
         </div>
       </form>
       <div class="row">
-        <div class="col-md-4 mt-4" v-for="h in houses">
+        <div class="col-md-4 mt-4" v-for="h in filteredHouse">
           <div class="card card-inverse card-info">
             <img class="card-img-top" :src="h.image">
             <div class="card-block">
@@ -39,8 +39,19 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 export default {
+  data(){
+    return {
+      search: ''
+    }
+  },
   computed:{
-    ...mapState(['houses'])
+    ...mapState(['houses']),
+    filteredHouse() {
+      var self = this
+      return this.houses.filter(function(h){
+        return h.nama.toLowerCase().indexOf(self.search.toLowerCase())>=0;
+      })
+    }
   },
   created(){
     this.getAllHouses()
